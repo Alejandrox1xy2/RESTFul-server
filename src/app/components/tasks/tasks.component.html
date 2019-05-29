@@ -1,0 +1,44 @@
+<!-- Formulario para creacion de tareas pendientes o ToDo's -->
+<div class="card">
+  <div class="card-body">
+    <form (submit)="addTask($event)">
+      <div class="input-group">
+        <input type="text" [(ngModel)]="titulo" name="titulo" class="form-control" placeholder="Añade una tarea" >
+        <span class="input-group-addon">
+          <button type="submit" class="btn btn-primary">
+            Añadir tarea
+          </button>
+        </span>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- List de tareas(marcar como realizadas y borrar)-->
+
+<table class="table text-center table-hover">
+<thead>
+    <tr>
+        <th>Estado</th>
+        <th>titulo</th>
+        <th>Acciones</th>
+
+    </tr>
+
+</thead>
+<tbody>
+    <tr *ngFor="let task of tasks">
+        <td>
+            <input type="checkbox" [checked]="task.isDone" (click)="updateStatus(task)">
+        </td>
+        <td>
+            {{ task.title }}
+        </td>
+        <td>
+            <button class="btn btn-danger" (click)="deleteTask(task._id)">
+              <i class="fa fa-trash"></i>
+            </button>
+        </td>
+    </tr>
+</tbody>
+</table>
